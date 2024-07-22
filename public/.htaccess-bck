@@ -1,6 +1,7 @@
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes 
+        #Options -MultiViews -Indexes #Original line
+        Options -MultiViews # Added
     </IfModule>
 
     RewriteEngine On
@@ -11,7 +12,8 @@
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
+    # RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^(.*)/$ / [L,R=301] #Added in development
     RewriteRule ^ %1 [L,R=301]
 
     # Send Requests To Front Controller...
